@@ -1,4 +1,0 @@
-- name: Create a directory
-  win_file:
-    path: C:\ansible_demo
-    state: directory

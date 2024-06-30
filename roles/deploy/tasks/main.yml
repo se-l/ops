@@ -1,3 +1,0 @@
-- name: Print final version
-  debug:
-    msg: "Ran this file."
