@@ -1,0 +1,9 @@
+- hosts: win
+  tasks:
+    - name: Push Docker container
+      win_shell: docker push sebastianluen/amm:{{ tgt_tag }}
+      register: output
+    
+    - name: Debug the output
+      debug:
+        var: output

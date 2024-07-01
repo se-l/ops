@@ -1,0 +1,9 @@
+- hosts: win
+  tasks:
+    - name: Build Docker container
+      win_shell: docker tag sebastianluen/amm:{{ src_tag }} sebastianluen/amm:{{ tgt_tag }}
+      register: output
+    
+    - name: Debug the output
+      debug:
+        var: output
