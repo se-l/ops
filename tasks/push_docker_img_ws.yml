@@ -1,5 +1,5 @@
 - hosts: win
   tasks:
     - name: Push Docker container
-      ansible.builtin.command:
+      ansible.windows.win_command:
         cmd: docker push sebastianluen/ws:prod
