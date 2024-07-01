@@ -1,5 +1,16 @@
 - hosts: win
   tasks:
+    - name: Set docker login
+      set_fact:
+        docker_user: "{{ lookup('env', 'DOCKER_USER') }}"
+      when: docker_user is not defined
+
+    - name: Set build configuration
+      set_fact:
+        docker_password: "{{ lookup('env', 'DOCKER_PASSWORD') }}"
+      when: docker_pass is not defined
+
     - name: Push Docker container
       ansible.windows.win_command:
-        cmd: docker login -u "{{ lookup('env', 'DOCKER_USER') }}" -p "{{ lookup('env', 'DOCKER_PASSWORD') }}" https://docker.io & docker push sebastianluen/ws:prod
+        cmd: echo "{{ docker_pass }}" | docker login -u {{ docker_user }} --password-stdin https://docker.io & docker push sebastianluen/ws:prod
+
