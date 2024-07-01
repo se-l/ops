@@ -1,7 +1,7 @@
 - hosts: win
   tasks:
     - name: Build Docker container
-      win_shell: docker tag sebastianluen/ws:{{ src_tag }} sebastianluen/ws:{{ tgt_tag }}
+      win_shell: docker tag sebastianluen/ws:{{ lookup('env', 'SRC_TAG') }} sebastianluen/ws:{{ lookup('env', 'TGT_TAG') }}
       register: output
     
     - name: Debug the output
