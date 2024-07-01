@@ -1,0 +1,17 @@
+- hosts: win
+  tasks:
+    - name: Change directory
+      win_command: cd C:\repos\quantconnect\Lean\Launcher
+      register: directory_changed
+    
+    - name: Debug the directory change
+      debug:
+        var: directory_changed
+
+    - name: Build .NET project
+      win_command: dotnet build QuantConnect.Lean.Launcher.csproj --configuration "{{ lookup('env', 'BUILD_CONFIGURATION') }}"
+      register: build_output
+    
+    - name: Debug the build output
+      debug:
+        var: build_output
