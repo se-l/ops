@@ -1,0 +1,13 @@
+- hosts: aws
+  tasks:
+    - name: Echo location
+      ansible.builtin.shell: echo ($pwd)
+      register: output
+
+    - name: Pull Docker container
+      ansible.builtin.shell: docker pull sebastianluen/amm:{{ lookup('env', 'TGT_TAG') }}
+      register: output
+    
+    - name: Debug the output
+      debug:
+        var: output
