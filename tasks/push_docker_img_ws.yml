@@ -12,5 +12,5 @@
 
     - name: Push Docker container
       ansible.windows.win_command:
-        cmd: echo "{{ docker_password }}" | docker login -u {{ docker_user }} --password-stdin https://docker.io & docker push sebastianluen/ws:prod
+        cmd: echo {{ docker_password }} | docker login -u {{ docker_user }} --password-stdin https://docker.io & docker push sebastianluen/ws:prod
 
