@@ -1,4 +1,4 @@
-- hosts: windows
+- hosts: win
   tasks:
   - name: Create a directory
     win_file:
