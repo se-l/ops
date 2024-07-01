@@ -1,0 +1,9 @@
+- hosts: win
+  tasks:
+    - name: Build Docker container
+      win_shell: docker push sebastianluen/ws:{{ lookup('env', 'TGT_TAG') }}
+      register: output
+    
+    - name: Debug the output
+      debug:
+        var: output
