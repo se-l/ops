@@ -2,7 +2,7 @@
   tasks:
     - name: restart a particular instance by its ID
       amazon.aws.ec2_instance:
-      state: started
-      instance_ids:
-      - i-006852abccae49b60
-      access_key: "{{ lookup('env', 'AWS_SECRET') }}"
+        state: started
+        instance_ids:
+          - i-006852abccae49b60
+        access_key: "{{ lookup('env', 'AWS_SECRET') }}"
