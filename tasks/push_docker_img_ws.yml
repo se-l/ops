@@ -11,5 +11,5 @@
       when: docker_pass is not defined
 
     - name: Push Docker container
-      ansible.windows.win_shell: echo {{ docker_password }} | docker login -u {{ docker_user }} --password-stdin https://docker.io & docker push sebastianluen/ws:prod
+      ansible.windows.win_shell: echo {{ docker_password }} | docker login -u {{ docker_user }} --password-stdin https://docker.io
 
