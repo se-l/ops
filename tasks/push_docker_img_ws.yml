@@ -3,7 +3,7 @@
     - name: Build Docker container
       docker_image:
         name: docker.io/sebastianluen/ws
-        tag: {{ lookup('env', 'TGT_TAG') }}
+        tag: prod
         push: yes
         source: local
     
