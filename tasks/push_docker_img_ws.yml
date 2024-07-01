@@ -1,8 +1,11 @@
 - hosts: win
   tasks:
     - name: Build Docker container
-      win_shell: docker push sebastianluen/ws:{{ lookup('env', 'TGT_TAG') }}
-      register: output
+      docker_image:
+        name: docker.io/sebastianluen/ws
+        tag: {{ lookup('env', 'TGT_TAG') }}
+        push: yes
+        source: local
     
     - name: Debug the output
       debug:
