@@ -1,12 +1,6 @@
 - hosts: win
   tasks:
     - name: Build Docker container
-      docker_image:
+      community.docker.docker_image_push:
         name: docker.io/sebastianluen/ws
         tag: prod
-        push: yes
-        source: local
-    
-    - name: Debug the output
-      debug:
-        var: output
