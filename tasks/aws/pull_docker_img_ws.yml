@@ -7,7 +7,7 @@
     - name: Pull Docker container
       ansible.builtin.shell: docker pull sebastianluen/amm:{{ lookup('env', 'TGT_TAG') }}
       register: output
-    
+
     - name: Debug the output
       debug:
         var: output
