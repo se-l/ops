@@ -6,7 +6,7 @@
       when: build_configuration is not defined
 
     - name: Build .NET project
-      win_shell: dotnet build QuantConnect.Lean.Launcher.csproj --configuration "{{ build_configuration }}"
+      win_shell: dotnet build QuantConnect.Lean.Launcher.csproj --configuration {{ build_configuration }}
       args:
         chdir: C:\repos\quantconnect\Lean\Launcher
       register: build_output
