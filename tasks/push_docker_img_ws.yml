@@ -1,6 +1,9 @@
 - hosts: win
   tasks:
     - name: Build Docker container
-      community.docker.docker_image_push:
-        name: docker.io/sebastianluen/ws
-        tag: prod
+      win_shell: docker push sebastianluen/ws:prod
+      register: output
+    
+    - name: Debug the output
+      debug:
+        var: output
