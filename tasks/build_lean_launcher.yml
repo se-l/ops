@@ -5,16 +5,8 @@
         build_configuration: "{{ lookup('env', 'BUILD_CONFIGURATION') }}"
       when: build_configuration is not defined
 
-    - name: Print current working directory
-      chdir: C:\repos\quantconnect\Lean\Launcher
-      register: current_dir
-
-    - name: Print current working directory
-      win_shell: pwd
-      register: current_dir      
-
     - name: Build .NET project
-      win_shell: cd C:\repos\quantconnect\Lean\Launcher && dotnet build QuantConnect.Lean.Launcher.csproj --configuration "{{ build_configuration }}"
+      win_shell: cd C:\repos\quantconnect\Lean\Launcher && echo $(pwd) && dotnet build QuantConnect.Lean.Launcher.csproj --configuration "{{ build_configuration }}"
       register: build_output
     
     - name: Debug the build output
