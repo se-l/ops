@@ -1,9 +1,5 @@
 - hosts: win
   tasks:
     - name: Push Docker container
-      community.docker.docker_image_push:
-        name: sebastianluen/ws
-        tag: prod
-        repository: https://docker.io/sebastianluen
-        push: true
-        debug: true
+      ansible.builtin.command:
+        cmd: docker push sebastianluen/ws:prod
