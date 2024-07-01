@@ -1,5 +1,4 @@
-- hosts: aws
-  tasks:
+-  tasks:
     - name: restart a particular instance by its ID
       amazon.aws.ec2_instance:
         state: started
