@@ -2,4 +2,4 @@
   tasks:
     - name: Push Docker container
       ansible.windows.win_command:
-        cmd: docker push sebastianluen/ws:prod
+        cmd: docker login & docker push sebastianluen/ws:prod
