@@ -1,0 +1,9 @@
+- hosts: win
+  tasks:
+    - name: Tag Docker container
+      win_shell: docker tag {{ img }}:{{ src_tag }} {{ img }}:{{ tgt_tag }}
+      register: output
+    
+    - name: Debug the output
+      debug:
+        var: output
