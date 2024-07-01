@@ -13,6 +13,14 @@
         build_configuration: "{{ lookup('env', 'BUILD_CONFIGURATION') }}"
       when: build_configuration is not defined
 
+    - name: Print current working directory
+      win_shell: pwd
+      register: current_dir
+    
+    - name: Debug the current working directory
+      debug:
+        var: current_dir
+
     - name: Build .NET project
       win_shell: dotnet build QuantConnect.Lean.Launcher.csproj --configuration "{{ build_configuration }}"
       register: build_output
