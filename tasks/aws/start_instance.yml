@@ -5,3 +5,8 @@
       instance_ids: "{{ lookup('env', 'INSTANCE_IDS') }}"
       region: us-east-1
       state: running
+    register: output
+
+  - name: Debug the output
+    debug:
+      var: output
