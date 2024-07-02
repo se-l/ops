@@ -6,7 +6,7 @@
         tag: "{{ lookup('env', 'IMAGE_TAG') }}"
 
     - name: Pull Docker container
-      shell: docker pull {{ repo }}/{{ image }}:{{ tag }}
+      shell: docker pull {{ repo }}/ws:{{ tag }}
       register: output
 
     - name: Debug the output
