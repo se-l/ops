@@ -1,0 +1,22 @@
+- hosts: aws
+  tasks:
+    - name: Set Facts
+      set_fact:
+        repo: "{{ lookup('env', 'DOCKER_REPOSITORY') }}"
+        tag: "{{ lookup('env', 'IMAGE_TAG') }}"
+
+    - name: Pull Docker image amm
+      shell: docker pull {{ repo }}/amm:{{ tag }}
+
+    - name: Pull Docker image ws
+      shell: docker pull {{ repo }}/ws:{{ tag }}
+
+    - name: Start Trader container
+      shell: docker compose up -d trader.prod.1
+      args:
+        chdir: /home/ubuntu
+      register: output
+
+    - name: Debug the output
+      debug:
+        var: output
