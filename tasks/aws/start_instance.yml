@@ -2,7 +2,7 @@
   hosts: localhost
   tasks:
   - name: Start instance by its ID
-    amazon.aws.ec2:
+    amazon.aws.ec2_instance:
       instance_ids: i-006852abccae49b60
       region: us-east-1
       state: running
