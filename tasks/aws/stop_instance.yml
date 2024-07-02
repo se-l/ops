@@ -4,4 +4,4 @@
     amazon.aws.ec2_instance:
       instance_ids: "{{ lookup('env', 'INSTANCE_IDS') }}"
       region: us-east-1
-      state: running
+      state: stopped
