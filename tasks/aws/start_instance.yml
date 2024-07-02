@@ -6,3 +6,4 @@
         instance_ids: i-006852abccae49b60
         region: us-east-1
         state: running
+        aws_access_key: "{{ lookup('env', 'AWS_ACCESS_KEY_ID') }}"
