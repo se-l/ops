@@ -1,9 +1,0 @@
-- hosts: win
-  tasks:
-    - name: Push Docker container
-      win_shell: docker push sebastianluen/amm:{{ lookup('env', 'TGT_TAG') }}
-      register: output
-    
-    - name: Debug the output
-      debug:
-        var: output
