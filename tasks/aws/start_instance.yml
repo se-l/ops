@@ -1,4 +1,5 @@
-- hosts: localhost
+- name: Start instance by its ID and log public IP
+  hosts: localhost
   tasks:
   - name: Start instance by its ID
     amazon.aws.ec2_instance:
@@ -10,3 +11,11 @@
   - name: Debug the output
     debug:
       var: output
+
+  - name: Extract public IP
+    set_fact:
+      instance_id: "{{ output.instances[0].public_ip_address }}"
+
+  - name: Debug the instance ID
+    debug:
+      var: instance_id
