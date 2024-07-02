@@ -1,0 +1,15 @@
+- hosts: win
+  tasks:
+    - name: Set Facts
+      set_fact:
+        repo: "{{ lookup('env', 'DOCKER_REPOSITORY') }}"
+        src_tag: "{{ lookup('env', 'SRC_TAG') }}"
+        tgt_tag: "{{ lookup('env', 'TGT_TAG') }}"
+
+    - name: Build Docker container
+      win_shell: docker tag {{ repo }}/amm:{{ src_tag }} {{ repo }}/amm:{{ tgt_tag }}
+      register: output
+    
+    - name: Debug the output
+      debug:
+        var: output

@@ -3,11 +3,10 @@
     - name: Set Facts
       set_fact:
         repo: "{{ lookup('env', 'DOCKER_REPOSITORY') }}"
-        image: "{{ lookup('env', 'DOCKER_IMAGE') }}"
         tag: "{{ lookup('env', 'IMAGE_TAG') }}"
 
     - name: Build Docker container
-      win_shell: docker buildx build --no-cache -t {{ repo }}/{{ image }}:{{ tag }} .
+      win_shell: docker buildx build --no-cache -t {{ repo }}/amm:{{ tag }} .
       args:
         chdir: C:\repos\quantconnect\Lean
       register: build_output

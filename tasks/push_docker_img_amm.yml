@@ -1,0 +1,14 @@
+- hosts: win
+  tasks:
+    - name: Set Facts
+      set_fact:
+        repo: "{{ lookup('env', 'DOCKER_REPOSITORY') }}"
+        tgt_tag: "{{ lookup('env', 'TGT_TAG') }}"
+
+    - name: Push Docker container
+      win_shell: docker push {{ repo }}/amm:{{ tgt_tag }}
+      register: output
+    
+    - name: Debug the output
+      debug:
+        var: output

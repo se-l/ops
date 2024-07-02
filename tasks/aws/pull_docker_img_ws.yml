@@ -1,0 +1,14 @@
+- hosts: aws
+  tasks:
+    - name: Set Facts
+      set_fact:
+        repo: "{{ lookup('env', 'DOCKER_REPOSITORY') }}"
+        tag: "{{ lookup('env', 'IMAGE_TAG') }}"
+
+    - name: Pull Docker container
+      shell: docker pull {{ repo }}/{{ image }}:{{ tag }}
+      register: output
+
+    - name: Debug the output
+      debug:
+        var: output
