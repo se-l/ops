@@ -19,12 +19,10 @@
 
     - name: Transfer .env
       win_shell: scp -i {{ path_ssh_key }} .envaws ubuntu@{{ tgt_ip_address }}:~/.env
-      when: ansible_host != 'win'
       args:
         chdir: "{{ dir_lean }}"
 
     - name: Transfer Docker compose
       win_shell: scp -i {{ path_ssh_key }} docker-compose.yml ubuntu@{{ tgt_ip_address }}:~/docker-compose.yml
-      when: ansible_host == 'win'
       args:
         chdir: "{{ dir_lean }}"
