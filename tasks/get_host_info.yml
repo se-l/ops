@@ -1,0 +1,7 @@
+- hosts: 
+    - win
+    - aws
+  tasks:
+    - name: Debug hostvars
+      debug:
+        var: " {{ hostvars }}"
