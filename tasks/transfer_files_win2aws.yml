@@ -1,16 +1,21 @@
 - hosts: win
   tasks:
+    - name: Debug hostvars
+      debug:
+        var: " {{ hostvars }}"
+
     - name: Set Facts
       set_fact:
+        tgt_ip: "{{ hostvars['aws'][0]['address'] }}"
         path_ssh_key: "{{ lookup('env', 'PATH_SSH_KEY') }}"
         dir_lean: "{{ lookup('env', 'DIR_LEAN') }}"
 
     - name: Transfer .env
-      win_shell: scp -i {{ path_ssh_key }} .envaws ubuntu@$ip:~/.env
+      win_shell: scp -i {{ path_ssh_key }} .envaws ubuntu@{{ tgt_ip }}:~/.env
       args:
         chdir: "{{ dir_lean }}"
 
     - name: Transfer Docker compose
-      win_shell: scp -i {{ path_ssh_key }} docker-compose.yml ubuntu@$ip:~/docker-compose.yml
+      win_shell: scp -i {{ path_ssh_key }} docker-compose.yml ubuntu@{{ tgt_ip }}:~/docker-compose.yml
       args:
         chdir: "{{ dir_lean }}"
