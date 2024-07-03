@@ -3,11 +3,11 @@
 
   tasks:
     - name: Start instance by its ID
-    amazon.aws.ec2_instance:
-      instance_ids: "{{ lookup('env', 'INSTANCE_IDS') }}"
-      region: us-east-1
-      state: running
-    register: output
+      amazon.aws.ec2_instance:
+        instance_ids: "{{ lookup('env', 'INSTANCE_IDS') }}"
+        region: us-east-1
+        state: running
+      register: output
 
     - name: Set Facts
       set_fact:
