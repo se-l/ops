@@ -1,9 +1,9 @@
 - hosts: win
   tasks:
     - name: Set Facts
-        set_fact:
-          path_ssh_key: "{{ lookup('env', 'PATH_SSH_KEY') }}"
-          dir_lean: "{{ lookup('env', 'DIR_LEAN') }}"
+      set_fact:
+        path_ssh_key: "{{ lookup('env', 'PATH_SSH_KEY') }}"
+        dir_lean: "{{ lookup('env', 'DIR_LEAN') }}"
 
     - name: Transfer .env
       win_shell: scp -i {{ path_ssh_key }} .envaws ubuntu@$ip:~/.env
