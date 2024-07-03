@@ -1,4 +1,6 @@
 - hosts: localhost
+  gather_facts: false
+  
   tasks:
   - name: Start instance by its ID
     amazon.aws.ec2_instance:

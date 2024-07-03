@@ -1,4 +1,6 @@
 - hosts: aws
+  gather_facts: false
+  
   tasks:
     - name: Set Facts
       set_fact:

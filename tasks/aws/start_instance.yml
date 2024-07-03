@@ -1,5 +1,7 @@
 - name: Start instance by its ID and log public IP
   hosts: localhost
+  gather_facts: false
+
   tasks:
   - name: Start instance by its ID
     amazon.aws.ec2_instance:
@@ -19,3 +21,8 @@
   - name: Debug the public ID
     debug:
       var: public_ip_address
+
+  - name: Write AWS IP to disk
+    copy:
+      content: "{{ public_ip_address }}"
+      dest: /tmp/aws_ip.txt

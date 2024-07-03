@@ -1,21 +1,26 @@
 - hosts: win
+  gather_facts: false
+
   tasks:
-    - name: Debug hostvars
-      debug:
-        var: " {{ hostvars }}"
+    - name: Start instance by its ID
+    amazon.aws.ec2_instance:
+      instance_ids: "{{ lookup('env', 'INSTANCE_IDS') }}"
+      region: us-east-1
+      state: running
+    register: output
 
     - name: Set Facts
       set_fact:
-        tgt_ip: "{{ hostvars['aws'][0]['address'] }}"
+        tgt_ip_address: "{{ output.instances[0].public_ip_address }}"
         path_ssh_key: "{{ lookup('env', 'PATH_SSH_KEY') }}"
         dir_lean: "{{ lookup('env', 'DIR_LEAN') }}"
 
     - name: Transfer .env
-      win_shell: scp -i {{ path_ssh_key }} .envaws ubuntu@{{ tgt_ip }}:~/.env
+      win_shell: scp -i {{ path_ssh_key }} .envaws ubuntu@{{ tgt_ip_address }}:~/.env
       args:
         chdir: "{{ dir_lean }}"
 
     - name: Transfer Docker compose
-      win_shell: scp -i {{ path_ssh_key }} docker-compose.yml ubuntu@{{ tgt_ip }}:~/docker-compose.yml
+      win_shell: scp -i {{ path_ssh_key }} docker-compose.yml ubuntu@{{ tgt_ip_address }}:~/docker-compose.yml
       args:
         chdir: "{{ dir_lean }}"
