@@ -8,9 +8,9 @@
     - name: Transfer .env
       win_shell: scp -i {{ path_ssh_key }} .envaws ubuntu@$ip:~/.env
       args:
-        chdir: {{ dir_lean }}
+        chdir: "{{ dir_lean }}"
 
     - name: Transfer Docker compose
       win_shell: scp -i {{ path_ssh_key }} docker-compose.yml ubuntu@$ip:~/docker-compose.yml
       args:
-        chdir: {{ dir_lean }}
+        chdir: "{{ dir_lean }}"
