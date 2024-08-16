@@ -2,7 +2,7 @@
   gather_facts: false
   
   tasks:
-  - name: Start instance by its ID
+  - name: Stop instance by ID
     amazon.aws.ec2_instance:
       instance_ids: "{{ lookup('env', 'INSTANCE_IDS') }}"
       region: us-east-1
